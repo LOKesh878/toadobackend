@@ -3,13 +3,14 @@ const MongoClient = require("mongodb").MongoClient;
 const cors = require("cors");
 const multer = require("multer");
 const app = Express();
-
+const dotenv = require("dotenv");
+dotenv.config();
 // Middleware to handle CORS and parse JSON bodies
 app.use(cors());
 app.use(Express.json()); // Important for parsing JSON bodies in POST requests
 
-const CONNECTION_STRING = "mongodb+srv://lokesh:RyzUG4LxwLgKFuwO@cluster0.vatqd.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
-const DATABASENAME = "todoappdb";
+const CONNECTION_STRING = process.env.MONGO_URI;
+const DATABASENAME = process.env.DATABASENAME;
 let database;
 
 // Initialize MongoDB connection
